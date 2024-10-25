@@ -12,5 +12,5 @@ TIME_NOW=$(date +%c)
 echo "$TIME_NOW > 파일 복사" >> $DEPLOY_LOG
 sudo rm -rf $ORG_DEPLOY_FOLDER
 sudo cp -r $SRC_DEPLOY_FOLDER $ORG_DEPLOY_FOLDER
-sudo chmod -R nginx:nginx $ORG_DEPLOY_FOLDER
+sudo chown -R nginx:nginx $ORG_DEPLOY_FOLDER
 
