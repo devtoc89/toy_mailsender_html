@@ -3,21 +3,42 @@
 
 <head>
   <link rel="stylesheet" href="/css/base.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+  </script>
+  <script type="module">
+    import '@material/web/all.js';
+    import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+    document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>for duellee</title>
+  <title>for deullee html</title>
 </head>
 
 <body>
   <form id="form">
-    <input type="text" name="name" placeholder="이름" />
-    <select name="camp">
-      <option value="">선택</option>
-      <option value="청년1">청년1</option>
-      <option value="청년2">청년2</option>
-    </select>
-    <textarea name="summary" cols="30" rows="10" placeholder="내용"></textarea>
-    <button id="submitBtn" type="button">보내기</button>
+    <md-outlined-text-field type="text" name="name" label="이름"></md-outlined-text-field>
+    <md-outlined-select name="camp" label="캠프">
+      <md-select-option value="청년1">
+        <div slot="headline">청년1</div>
+      </md-select-option>
+      <md-select-option value="청년2">
+        <div slot="headline">청년2</div>
+      </md-select-option>
+    </md-outlined-select>
+    <md-outlined-text-field name="summary" type="textarea" rows="10" label="내용"></md-outlined-text-field>
+    <md-filled-tonal-button id="submitBtn" type="button">
+      보내기
+      <svg slot="icon" viewBox="0 0 48 48">
+        <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
+      </svg>
+    </md-filled-tonal-button>
   </form>
   <script src="/js/main.js" type="module"></script>
 </body>
