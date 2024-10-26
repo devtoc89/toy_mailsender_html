@@ -1,7 +1,6 @@
 const formatItemKeys = ["name", "camp", "summary"];
 
-const origin =
-	location.origin.indexOf("localhost") > 0 ? "http://localhost:3000" : "";
+const API_BASE = "/api/v1";
 
 function debounce(func, timeout = 250) {
 	let timer;
@@ -19,7 +18,7 @@ function debounce(func, timeout = 250) {
 }
 
 async function submitForm(body) {
-	const res = await fetch(`${origin}/review`, {
+	const res = await fetch(`${API_BASE}/review`, {
 		method: "post",
 		body,
 		headers: { "Content-Type": "application/json" },
