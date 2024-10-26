@@ -1,4 +1,8 @@
-const formatItemKeys = ["name", "camp", "summary"];
+const formatItemKeys = [
+	{ key: "name", label: "이름" },
+	{ key: "camp", label: "캠프" },
+	{ key: "summary", label: "내용" },
+];
 
 const API_BASE = "/api/v1";
 
@@ -38,14 +42,20 @@ async function submitForm(body) {
 const handleOnSubmitButtonClick = debounce(() => {
 	const elForm = document.querySelector("#form");
 	const elBtn = elForm.querySelector("#submitBtn");
-	const p = submitForm(
-		JSON.stringify(
-			formatItemKeys.reduce((acc, cur) => {
-				acc[cur] = elForm[cur].value;
-				return acc;
-			}, {}),
-		),
-	);
+	const errorLabel = [];
+	const body = formatItemKeys.reduce((acc, cur) => {
+		const nextval = elForm[cur.key].value;
+		if (!nextval) errorLabel.push(cur.label);
+		acc[cur.key] = nextval;
+		return acc;
+	}, {});
+
+	if (errorLabel.length > 0) {
+		alert(`${errorLabel}(을/를) 꼭 입력해 주세요.`);
+		return;
+	}
+
+	const p = submitForm(JSON.stringify(body));
 	elBtn.disabled = true;
 	p.finally(() => {
 		elBtn.disabled = false;
