@@ -24,11 +24,11 @@ jobs:
     steps:
     # (1) 기본 체크아웃
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     # (4) AWS 인증 (IAM 사용자 Access Key, Secret Key 활용)
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
